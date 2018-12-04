@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="springHelloWorld"
+        class="com.yiibai.tutorial.spring.helloworld.impl.SpringHelloWorld"></bean>
+
+    <bean id="strutsHelloWorld"
+        class="com.yiibai.tutorial.spring.helloworld.impl.StrutsHelloWorld"></bean>
+
+
+    <bean id="helloWorldService"
+        class="com.yiibai.tutorial.spring.helloworld.HelloWorldService">
+        <property name="helloWorld" ref="springHelloWorld" />
+    </bean>
+
+    <!-- <bean id="helloWorldService"
+        class="com.yiibai.tutorial.spring.helloworld.HelloWorldService">
+        <property name="helloWorld" ref="strutsHelloWorld" />
+    </bean> -->
+
+<!--
+    这是一个配置文件，可以在这里声明Java bean
+    可以通过读取 beans.xml 文件来创建一个应用程序上下文对象
+  ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+
+
+  IoC容器中，其作用是作为第三种角色，它的任务是创建 beans.xml 文件中声明的 Java Bean 对象
+    并通过setter方法注入依赖
+    在这个例子中，HelloWorldService 是一个 java bean 注入依赖
+-->
+</beans>

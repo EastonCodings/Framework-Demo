@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- 创建持久化类的映射文件 -->
+<!-- 它主要是用于描述类与数据库中的表的映射关系。 -->
+<hibernate-mapping>
+    <class name="com.yiibai.mypackage.Server" table="server">
+
+<!--
+name：即实体类的全名
+table：映射到数据库里面的那个表的名称
+-->
+        <!-- 主键生成策略 -->
+        <id name="id">
+            <generator class="native"></generator>
+        </id>
+
+<!--
+    使用 property 来描述属性与字段的对应关系
+    如果 length 忽略不写，且你的表是自动创建这种方案，那么 length 的默认长度是 255
+-->
+        <property name="warehouseName" column="warehouse_name"></property>
+        <property name="slackGroup" column="slack_group"></property>
+        <property name="recipients" column="recipient_slackId"></property>
+        <property name="emailAddresses" column="email_address"></property>
+        <property name="state" column="state"></property>
+        <property name="createdAt" column="created_at"></property>
+        <property name="createdBy" column="created_by"></property>
+        <property name="modifiedAt" column="modified_at"></property>
+        <property name="modifiedBy" column="modified_by"></property>
+        <property name="deleteFlag" column="delete_flag"></property>
+
+    </class>
+
+</hibernate-mapping>

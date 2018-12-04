@@ -1,0 +1,13 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="login" namespace="/login" extends="struts-default">
+        <action name="Login" method="login" class="action.Login">
+            <result name="success">/index.jsp</result>
+        </action>
+    </package>
+</struts>
+<!-- http://localhost:8080/Struts2_Demo/login/Login -->
+
+<!-- Struts2 实质上是以Webwork为核心的，和Struts1有很大区别。 -->

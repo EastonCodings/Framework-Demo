@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.curd.Server" table="server">
+
+        <!-- native: id 这一列在数据库中管理方式： 如:mysql 会自动使id自增 oracle:会为该列产生一个序列 -->
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="native"></generator>
+        </id>
+
+        <property name="warehouseName" column="warehouse_name" type="java.lang.String"></property>
+        <property name="slackGroup" column="slack_group" type="java.lang.String"></property>
+        <property name="recipients" column="recipient_slackId" type="java.lang.String"></property>
+        <property name="emailAddresses" column="email_address" type="java.lang.String"></property>
+        <property name="state" column="state" type="java.lang.String"></property>
+        <property name="createdAt" column="created_at" type="java.util.Date"></property>
+        <property name="createdBy" column="created_by" type="java.lang.Integer"></property>
+        <property name="modifiedAt" column="modified_at" type="java.util.Date"></property>
+        <property name="modifiedBy" column="modified_by" type="java.lang.Integer"></property>
+        <property name="deleteFlag" column="delete_flag" type="java.lang.String"></property>
+
+    </class>
+
+</hibernate-mapping>

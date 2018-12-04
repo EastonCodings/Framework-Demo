@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.SM.dao.ext.ServerExtMapper">
+    <resultMap id="BaseResultMap" type="com.SM.entity.Server">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="warehouse_name" jdbcType="VARCHAR" property="warehouseName" />
+        <result column="slack_group" jdbcType="VARCHAR" property="slackGroup" />
+        <result column="recipient_slackId" jdbcType="VARCHAR" property="recipientSlackid" />
+        <result column="email_address" jdbcType="VARCHAR" property="emailAddress" />
+        <result column="state" jdbcType="CHAR" property="state" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+        <result column="modified_at" jdbcType="TIMESTAMP" property="modifiedAt" />
+        <result column="modified_by" jdbcType="INTEGER" property="modifiedBy" />
+        <result column="delete_flag" jdbcType="CHAR" property="deleteFlag" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, warehouse_name, slack_group, recipient_slackId,
+        email_address, state,
+        created_at,
+        created_by, modified_at,
+        modified_by, delete_flag
+    </sql>
+
+    <select id="getServer" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM server
+        ORDER BY modified_at desc
+    </select>
+</mapper>

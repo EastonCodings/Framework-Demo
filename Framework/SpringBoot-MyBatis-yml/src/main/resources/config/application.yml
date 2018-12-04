@@ -1,0 +1,11 @@
+# ------------------------Spring------------------------------
+spring:
+    profiles:
+        active: prod
+    thymeleaf:
+        cache: false
+        mode: HTML5
+
+# ------------------------Mybatis-----------------------------
+mybatis:
+    type-aliases-package: com.SM.entity

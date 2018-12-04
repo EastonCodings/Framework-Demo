@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成，包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+    例如：namespace="me.gacl.mapping.serverMapper"就是me.gacl.mapping(包名)+serverMapper(serverMapper.xml文件去除后缀)
+-->
+<mapper namespace="me.gacl.mapping.serverMapper">
+
+<!--
+    在select标签中编写查询的SQL语句， 设置select标签的id属性为getServer，id属性值必须是唯一的，不能够重复
+    使用parameterType属性指明查询时使用的参数类型
+  resultType属性指明查询返回的结果集类型
+  resultType="me.gacl.domain.Server"就表示将查询结果封装成一个Server类的对象返回
+  Server类就是server表所对应的实体类
+-->
+
+<!--
+        根据id查询得到一个server对象
+-->
+
+<!-- <resultMap id="BaseResultMap" type="me.gacl.domain.Server">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="warehouse_name" jdbcType="VARCHAR" property="warehouseName" />
+    <result column="slack_group" jdbcType="VARCHAR" property="slackGroup" />
+    <result column="recipient_slackId" jdbcType="VARCHAR" property="recipients" />
+    <result column="email_address" jdbcType="VARCHAR" property="emailAddresses" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="modified_at" jdbcType="TIMESTAMP" property="modifiedAt" />
+    <result column="modified_by" jdbcType="INTEGER" property="modifiedBy" />
+    <result column="delete_flag" jdbcType="CHAR" property="deleteFlag" />
+</resultMap> -->
+
+    <!-- <select id="getServer" parameterType="int" resultMap="BaseResultMap"> -->
+    <select id="getServer" parameterType="int" resultType="me.gacl.domain.Server">
+        <!-- select * from server where id=#{id} -->
+        select
+            id,
+            warehouse_name warehouseName,
+            slack_group slackGroup,
+            recipient_slackId recipients,
+            email_address emailAddresses,
+            state,
+            created_at createdAt,
+            created_by createdBy,
+            modified_at modifiedAt,
+            modified_by modifiedBy,
+            delete_flag deleteFlag
+        from server
+        where id=#{id}
+    </select>
+
+    <!-- 创建用户(Create) -->
+    <insert id="addServer" parameterType="me.gacl.domain.Server">
+        insert into server
+            (id, warehouse_name, slack_group, recipient_slackId, email_address, state, created_at, created_by,
+    modified_at, modified_by, delete_flag)
+        values
+            (#{id,jdbcType=INTEGER}, #{warehouseName,jdbcType=VARCHAR}, #{slackGroup,jdbcType=VARCHAR}, 
+      #{recipients,jdbcType=VARCHAR}, #{emailAddresses,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, #{modifiedAt,jdbcType=TIMESTAMP}, 
+      #{modifiedBy,jdbcType=INTEGER}, #{deleteFlag,jdbcType=CHAR})
+    </insert>
+
+    <!-- 删除用户(Remove) -->
+    <delete id="deleteServer" parameterType="int">
+        delete from server
+        where id=#{id}
+    </delete>
+
+    <!-- 修改用户(Update) -->
+    <update id="updateServer" parameterType="me.gacl.domain.Server">
+        update server set
+            warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+            slack_group = #{slackGroup,jdbcType=VARCHAR},
+            recipient_slackId = #{recipients,jdbcType=VARCHAR},
+            email_address = #{emailAddresses,jdbcType=VARCHAR},
+            state = #{state,jdbcType=CHAR},
+            created_at = #{createdAt,jdbcType=TIMESTAMP},
+            created_by = #{createdBy,jdbcType=INTEGER},
+            modified_at = #{modifiedAt,jdbcType=TIMESTAMP},
+            modified_by = #{modifiedBy,jdbcType=INTEGER},
+            delete_flag = #{deleteFlag,jdbcType=CHAR}
+        where id=#{id}
+    </update>
+
+    <!-- 查询全部用户-->
+    <select id="getAllServers" resultType="me.gacl.domain.Server">
+        <!-- select * from server -->
+        select
+            id,
+            warehouse_name warehouseName,
+            slack_group slackGroup,
+            recipient_slackId recipients,
+            email_address emailAddresses,
+            state,
+            created_at createdAt,
+            created_by createdBy,
+            modified_at modifiedAt,
+            modified_by modifiedBy,
+            delete_flag deleteFlag
+        from server
+    </select>
+
+</mapper>
